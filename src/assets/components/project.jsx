@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import myImage1 from '../image/project/crud.png';
 import myImage2 from '../image/project/tasktrack.png';
 import myImage3 from '../image/project/routex.png';
 import myImage4 from '../image/project/gadgetgalaxy.png';
+import myImage5 from '../image/project/flashwire.png';
 
 export const Project = () => {
   const [expandedProject, setExpandedProject] = useState(null);
+  const scrollContainerRef = useRef(null); // Reference for scrolling container
 
   const skillsData = [
     {
@@ -31,6 +33,12 @@ export const Project = () => {
       image: myImage1,
       description: "InfoCraft, powered by Flask, orchestrates seamless data operations, allowing users to effortlessly Create, Read, Update, and Delete information, providing a streamlined and responsive experience for efficient data management.",
       github: "https://github.com/Sasikumar183/Flask-Crud-App"
+    },
+    {
+      project: "Flash Wire",
+      image: myImage5,
+      description: "FlashWire is a web-based news app built with React JS, styled using Tailwind CSS, and powered by the GNews API for fetching real-time news across multiple categories. It offers a fast, responsive user experience and is hosted on Firebase for easy access across devices.",
+      github: "https://github.com/Sasikumar183/Acowale-NewsApp"
     }
   ];
 
@@ -38,11 +46,41 @@ export const Project = () => {
     setExpandedProject(expandedProject === index ? null : index);
   };
 
+  const scrollLeft = () => {
+    scrollContainerRef.current.scrollBy({
+      left: -400, // Adjust the value based on how far you want to scroll
+      behavior: 'smooth',
+    });
+  };
+
+  const scrollRight = () => {
+    scrollContainerRef.current.scrollBy({
+      left: 400, // Adjust the value based on how far you want to scroll
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <section className="w-full bg-gray-900 text-white py-12">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">My Projects</h2><hr className='w-[80%] border-[2px] rounded mx-auto mb-10'/>
-        <div className="flex space-x-8 overflow-x-auto scrollbar-hide" data-aos="flip-up" data-aos-duration="1000">
+      <div className="container mx-auto px-5 relative">
+        <h2 className="text-3xl font-bold text-center mb-8">My Projects</h2>
+        <hr className='w-[80%] border-[2px] rounded mx-auto mb-10'/>
+
+        {/* Left Scroll Button */}
+        <button
+          className="absolute left-0 text-3xl top-1/2 transform -translate-y-1/2 bg-gray-600 text-white p-2 rounded-full shadow-md z-10"
+          onClick={scrollLeft}
+        >
+          &lt;
+        </button>
+
+        {/* Scrollable Projects */}
+        <div
+          className="flex space-x-8 overflow-x-auto scrollbar-hide" 
+          data-aos="flip-up" 
+          data-aos-duration="1000"
+          ref={scrollContainerRef} // Reference for scrolling
+        >
           {skillsData.map((skill, index) => (
             <div
               key={index}
@@ -72,21 +110,29 @@ export const Project = () => {
             </div>
           ))}
         </div>
+
+        {/* Right Scroll Button */}
+        <button
+          className="absolute right-0 text-3xl top-1/2 transform -translate-y-1/2 bg-gray-600  text-white p-2 rounded-full shadow-md z-10"
+          onClick={scrollRight}
+        >
+          &gt;
+        </button>
       </div>
+
       <style jsx>{`
-        /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
 
         /* Hide scrollbar for IE, Edge, and Firefox */
         .scrollbar-hide {
-          -ms-overfl
-          ow-style: none;  /* IE and Edge */
+          -ms-overflow-style: none;  /* IE and Edge */
           scrollbar-width: none;  /* Firefox */
         }
       `}</style>
-      <span  id="contact"></span>
+
+      <span id="contact"></span>
     </section>
   );
 };

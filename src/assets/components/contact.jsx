@@ -14,9 +14,10 @@ export const Contact = () => {
   };
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
     const { name, email, subject, message } = formData;
-    window.location.href = `mailto:sasikumar@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+    window.location.href = `mailto:sasikumar.n2021it@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
   };
 
   return (
@@ -28,7 +29,7 @@ export const Contact = () => {
             Feel free to reach out for collaborations. You can also check out my resume below.
           </p>
           <button className="bg-white border-black p-3 mb-8 text-md rounded shadow-lg shadow-black hover:bg-gray-300 transition duration-300">
-            <a href="https://drive.google.com/file/d/1WP9hw4hFON8Dghj0PEkTgLYA4ByB0vOv/view">Look at my resume</a>
+            <a href="https://drive.google.com/file/d/1FKhR0yYfp42lEaHL3EmEXwde_utIwHph/view" target='_blank'>Look at my resume</a>
           </button>
           <div className="flex space-x-4">
             <a href="https://www.linkedin.com/in/sasikumar-n-04344024a/" data-aos="fade-right" data-aos-duration="2500" target="_blank" rel="noopener noreferrer" className="text-white text-2xl hover:text-blue-600 transition duration-300">
